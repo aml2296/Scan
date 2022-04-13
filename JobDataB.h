@@ -3,26 +3,34 @@
 using namespace std;
 class JobNode
 {
-    private:
+    public:
         JobNode *first = nullptr;
         JobNode *last = nullptr;
         JobNode *next = nullptr;
         JobNode *prev = nullptr;
-  
-        char* firstName = nullptr;
-        char* lastName = nullptr;
-        int JobID = -1;
-  
+        JobData *data = nullptr;
     
-    
-    public:
-        const char* ID();
-        const char* Name();
-        const char* ToString();
+        int GetID();
+        string StringID();
+        string Name();
+        string ToString();
     
         JobNode();
         JobNode(string nameF, string nameL, int _id,  JobNode *firstPtr = nullptr, JobNode *lastPtr = nullptr, JobNode *nextPtr = nullptr, JobNode *prevPtr = nullptr);
 };
+class JobData
+{
+        private:
+        string firstName;
+        string lastName;
+        int JobID = -1;
+
+
+        int GetID();
+        string StringID();
+        string Name();
+        string ToString();
+}
 class JobDataB
 {
     private:
@@ -36,16 +44,6 @@ class JobDataB
     {
         
     }
-    string ToString()
-    {
-        JobNode* iterator = jobHead;
-        std::string str = "";
-        for(int i =0; i < count; i++)
-        {
-            str += iterator->ToString();
-            str += '\n';
-        }
-        return str == ""?"No Job's in database!!" : str;
-    }
+    string ToString();
     bool AddJobData(string nameF, string nameL, int _id);
 };
