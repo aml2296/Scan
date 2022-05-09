@@ -25,6 +25,16 @@ inline string JobData::ToString()
     str += Name();
     return str;
 }
+inline string JobData::Compress()
+{
+    string str = "";
+    str += StringID();
+    str += DataBreak; //Record Seperator
+    str += firstName;
+    str += DataBreak;
+    str += lastName;
+    return str;
+}
 inline JobNode::JobNode()
 {
     
@@ -36,13 +46,44 @@ inline JobData::JobData()
  JobID = -1;
 }
 inline JobData::JobData(string nameF, string nameL, int _id,JobNode *firstPtr, JobNode *lastPtr, JobNode *nextPtr, JobNode *prevPtr)
+{
+    firstName = nameF;
+    lastName = nameL;
+    
+    JobID = _id < 0? 0 : _id;
+}
+inline JobData::JobData(string dataStr)
+{
+    int iterator = 0;
+    int endDataBlock = 0;
+    int startDataBlock = iterator;
+    JobData returnValue;
+    
+    while(dataStr.length() > 0)
+    {
+        int subStrLength = dataStr.find(DataBreak,0);
+        string subStr = dataStr.subStr(0,subStrLength - 1);
+        returnValue.ReadID(substr);
+        
+        dataStr.erase(0,subStrLength);
+    }
+    
+    
+    
+    
+    
+    while(iterator < dataStr.length() 
+    && dataStr[iterator] != EndOfData)
+    {
+        while(dataStr[iterator] != DataBreak
+        && dataSTR[iterator] != EndOfData)
         {
-            firstName = nameF;
-            lastName = nameL;
             
-            JobID = _id < 0? 0 : _id;
+            iterator++;
         }
-
+        iterator++;
+    }
+}
 inline int JobDataB::Count()
 {
  return count;   
@@ -50,6 +91,24 @@ inline int JobDataB::Count()
 inline JobDataB::JobDataB()
 {
     count = 0;
+}
+inline ReadID(string strID)
+{
+    stringstream ss(strID);
+    ss >> JobID;
+    std::cout << JobID;
+}
+inline string JobDataB::Compress()
+{
+        JobNode* iterator = jobHead;
+        std::string str = "";
+        std::cout<< count;
+        for(int i =0; i < count && iterator != nullptr; i++,iterator =  iterator->next)
+        {
+            str += iterator->data->Compress();
+            str += JobData::EndOfData; //Char to represent end of record
+        }
+        return str == ""?"No Job's in database!!" : str;
 }
 inline string JobDataB::ToString()
     {
