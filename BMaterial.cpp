@@ -1,3 +1,5 @@
+#ifndef MATERIAL
+#define MATERIAL
 enum Colors
 {
     White,
@@ -16,3 +18,4 @@ class BathMaterial
     Colors color = Red;
     MatType Type = None; 
 };
+#endif
