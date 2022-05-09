@@ -17,25 +17,50 @@ inline bool FManager::WriteData()
     if(data.Count() < 1)
     {
         std::cout << "No Data to Write!";
+        return false;
     }
     for(int i = 0; i < data.Count(); i++)
     {
         JobData jb = data.Current();
-        file << jb.ToString() << '\n';
+        file << jb.Compress() << JobData::EndOfData;
         data.Next();
     }
+    file.close();
     return true;
-}
-
-inline FManager::ReadData()
-{
-    ifstream file(bufferFile); 
-    data.Clear();
-    
 }
 
 inline bool FManager::ReadData()
 {
-  return true;
+    int bufferLimit = 100;
+    ifstream file(bufferFile,ios::in);
+    if(file.is_open())
+    {
+        char buffer[bufferLimit]  = {""};
+        string buildDataStr;
+        int iterator = 0;
+        int dataChunckEnd = 0;
+        
+        file.seekg(0);
+        //data.Clear();
+        
+        
+        while(file >> buffer)
+        {   
+            while(iterator < bufferLimit)
+            {
+                string buildDataStr = "";
+                for(iterator = dataChunckEnd; 
+                buffer[iterator] != JobData::EndOfData || iterator > bufferLimit;
+                iterator++)
+                {
+                    buildDataStr += buffer[iterator];
+                }
+                dataChunckEnd = iterator+1;
+                std::cout << buildDataStr;
+            }
+        }
+        file.close();
+        return true;
+    }
+    return false;
 }
-    
