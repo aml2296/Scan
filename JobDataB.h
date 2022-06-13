@@ -27,12 +27,11 @@ class JobData
         string firstName;
         string lastName;
         int JobID = -1;
-    
+        void ReadID(string);
     public:
         const static char EndOfData = '|';
         const static char DataBreak = '\x1E';
         int GetID ();
-        void ReadID();
         string StringID ();
         string Name ();
         string ToString ();
@@ -53,12 +52,12 @@ private:
 
   bool InsertJobNode (JobNode *);
 
-
 public:
   JobDataB ();
   int Count();
   string ToString ();
   bool SetIterator(int);
+  void Clear();
   JobData Head();
   JobData Tail();
   JobData Current();
