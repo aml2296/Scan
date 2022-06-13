@@ -1,6 +1,6 @@
 #ifndef MATERIAL
 #define MATERIAL
-enum Colors
+enum class Colors
 {
     White,
     Red,
@@ -8,14 +8,14 @@ enum Colors
     Blue,
     Black
 };
-enum MatType
+enum class MatType
 {
-    None
+    None = -1
 };
 
 class BathMaterial
 {
-    Colors color = Red;
-    MatType Type = None; 
+    Colors color;
+    MatType Type; 
 };
 #endif
