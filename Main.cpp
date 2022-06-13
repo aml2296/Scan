@@ -1,14 +1,14 @@
 #include "JobData.cpp"
 #include "BMat.cpp"
 #include "FManager.cpp"
+#include "App.cpp"
 void Write(JobDataB&,FManager&);
 
 int main()
 {
-    JobDataB temp;
-    FManager fMang(temp);
-    fMang.ReadData();
-    return 0;
+        App application;
+        application.Init();
+        
 }
 
 void Write(JobDataB &temp, FManager &fMang)
