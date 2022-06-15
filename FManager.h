@@ -5,6 +5,7 @@
 #include <iostream>
 #include <streambuf>
 #include "JobDataB.h"
+#include "MatAttribute.h"
 
 class FManager
 {
