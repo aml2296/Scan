@@ -1,4 +1,6 @@
 #include "FManager.h"
+const int bufferLimit = 100;
+
 
 inline FManager::FManager ()
 {
@@ -42,7 +44,6 @@ FManager::GetData()
 inline bool
 FManager::ReadData ()
 {
-  int bufferLimit = 100;
   ifstream file (bufferFile, ios::in);
   if (file.is_open ())
     {

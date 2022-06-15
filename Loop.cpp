@@ -39,7 +39,7 @@ Loop::Run() //Loops until exit is called,
         m1.unlock();
 }
 
-inline void Loop::Loop(thread &t)
+Loop::Loop(thread &t)
 {
         loopThread = std::thread(&App::Loop, t); //Probably wont work
 }

@@ -1,5 +1,5 @@
-#include "JobData.cpp"
-#include "BMat.cpp"
+#include "JobDataB.cpp"
+#include "BMaterial.cpp"
 #include "FManager.cpp"
 #include "App.cpp"
 void Write(JobDataB&,FManager&);
