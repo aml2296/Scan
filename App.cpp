@@ -1,49 +1,25 @@
 #include "App.h"
 
-
-inline std::string LowerStr(std::string s)
-{
-        for(char &c:s)
-                c = tolower(c);
-        return s;
-}
-
 inline App::App()
 {
         
 }
 inline App::~App()
 {
-        End();
+    End();
 }
 inline void
 App::Init ()
 {
-  jobDatabase = fileManager.GetData ();
-  t1 = std::thread(&App::Loop, this);
-}
-
-inline void
-App::Loop ()
-{       
-        m1.lock();
-        std::cout << "A" << std::endl;
-        std::string currInput = "";
-        while(lastInputEnum != accInput::Exit)
-        {
-                std::cin >> currInput;
-                if(CheckInput(currInput))
-                {
-                        std::cout << "Valid" << std::endl;
-                }
-        }
-        m1.unlock();
+  jobDatabase = fileManager.GetData();
+  //mLoop = new Loop();
 }
 
 inline void
 App::End()
 {
-        t1.join();
+    if (mLoop != nullptr)
+        delete mLoop;
 }
 
 inline bool
@@ -77,10 +53,10 @@ App::CheckInput(std::string inputSTR)
 inline accInput 
 App::hashInputToEnum(std::string s)
 {
-        for(char &c : s)
-                LowerStr(c);
-        if(s.compare(App::EXIT) == 0) return accInput::Exit;
-        if(s.compare(App::BUILD) == 0) return accInput::Build;
-        if(s.compare(App::HELP) == 0) return accInput::Help;
-        return accInput::None;
+    HFunc hfucntion;
+    s = hfucntion.LowerStr(s);
+    //if(s.compare(App.EXIT) == 0) return accInput::Exit;
+    //if(s.compare(App::BUILD) == 0) return accInput::Build;
+    //if(s.compare(App::HELP) == 0) return accInput::Help;
+    return accInput::None;
 }

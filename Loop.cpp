@@ -4,12 +4,13 @@ inline int
 Loop::CheckInput(std::string inputSTR) //Check each Command for a valid Input
 {                                       //Returns Command index if valid, else returns -1
         int rIndex = -1;
-        inputSTR = LowerStr(inputSTR);
-        for(int i = 0; i < commands.length; i++)
+        HFunc hfucntion;
+        inputSTR = hfucntion.LowerStr(inputSTR);
+        /*for (int i = 0; i < commands.length; i++)
         {
                 if(commands[i].compare(rIndex) == 0)
                         rIndex = i; break;
-        }       
+        } */      
         return rIndex;
 }
 
@@ -25,21 +26,21 @@ Loop::Init()
 inline void
 Loop::Run() //Loops until exit is called,
 {
-        m1.lock();
+        loopLock.lock();
         int lastCommandIndex = -1;
-        while(lastCommandIndex != commands[0]) //while command does not equal exit
+        while( 0 != 1) //while command does not equal exit
         {
-                std::cin >> currInput;
-                lastCommandIndex = CheckInput(currInput);
-                if(lastCommandIndex > 0)
-                {
-                        
-                }
+            std::cout << "."; std::this_thread::sleep_for(std::chrono::seconds(1));
         }
-        m1.unlock();
+        loopLock.unlock();
 }
 
-Loop::Loop(thread &t)
+Loop::Loop()
 {
-        loopThread = std::thread(&App::Loop, t); //Probably wont work
+        loopThread = std::thread(&Loop::Run, this); //Probably wont work
+}
+
+Loop::~Loop()
+{
+    loopThread.join();
 }

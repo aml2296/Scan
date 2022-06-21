@@ -3,12 +3,6 @@
 
 #include <iostream>
 
-struct AttributeMasterNode //Grab Bar| Walls| Tubs | Cabinets | Vanity | Trim Kits
-{
-	std::string name;
-	AttributeMasterNode* branch = nullptr;
-	AttributeSubNode* attributes = nullptr;
-};
 
 struct AttributeSubNode
 {
@@ -17,6 +11,12 @@ struct AttributeSubNode
 struct AttributeSubNodeData
 {
 	std::string type;
+};
+class AttributeMasterNode //Grab Bar| Walls| Tubs | Cabinets | Vanity | Trim Kits
+{
+	std::string name;
+	AttributeMasterNode* branch = nullptr;
+	AttributeSubNode* attributes = nullptr;
 };
 
 class MatAttribute
@@ -30,5 +30,4 @@ public:
 	AttributeMasterNode* FindMasterNode(std::string); //Find a Material Type ie, Tubs, Walls
 	bool AddAttribute(AttributeMasterNode); //Add attribute to a Node ie, Color, Size
 };
-
 #endif
