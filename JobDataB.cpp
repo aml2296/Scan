@@ -2,6 +2,13 @@
 using namespace std;
 
 
+
+inline
+JobNode::JobNode()
+{
+
+}
+
 inline int
 JobData::GetID ()
 {
@@ -37,26 +44,24 @@ inline string
 JobData::Compress ()
 {
   string str = "";
+  dataBlockCount = 0;
   str += StringID ();
   str += DataBreak;		//Record Seperator
+  dataBlockCount++;
   str += firstName;
   str += DataBreak;
+  dataBlockCount++;
   str += lastName;
+  dataBlockCount++;
+  str = DataBreak + str;
+  str = (char)dataBlockCount + str;
   return str;
-}
-
-inline
-JobNode::JobNode ()
-{
-
 }
 
 inline
 JobData::JobData ()
 {
-  firstName = "No";
-  lastName = "Name";
-  JobID = -1;
+
 }
 
 inline

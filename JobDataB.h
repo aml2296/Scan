@@ -28,15 +28,17 @@ class JobData
         string lastName;
         int JobID = -1;
         void ReadID(string);
+        int dataBlockCount = 0;
     public:
         const static char EndOfData = '|';
         const static char DataBreak = '\x1E';
         int GetID ();
+        const int Count() { return dataBlockCount; }
         string StringID ();
         string Name ();
         string ToString ();
         string Compress();
-        JobData ();
+        JobData();
         JobData (string nameF, string nameL, int _id, JobNode * firstPtr =
              nullptr, JobNode * lastPtr = nullptr, JobNode * nextPtr =
              nullptr, JobNode * prevPtr = nullptr);
